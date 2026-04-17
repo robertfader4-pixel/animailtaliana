@@ -18,9 +18,7 @@
     <header class="hero" id="hero">
       <div class="hero-media">
         <img id="heroPoster" class="hero-poster is-visible" src="assets/images/album-poster.jpg" alt="Portada del álbum">
-        <img id="currentArtwork" class="hero-artwork" src="assets/images/album-poster.jpg" alt="Imagen de la canción actual">
         <div class="hero-vignette"></div>
-        <canvas id="spectrumCanvas" aria-hidden="true"></canvas>
       </div>
 
       <div class="hero-content">
@@ -41,13 +39,17 @@
         </div>
 
         <aside class="now-card">
-          <div class="now-card-visual">
-            <img id="nowArtworkThumb" src="assets/images/album-poster.jpg" alt="Imagen de la canción actual">
+          <div class="now-visual">
+            <img id="currentArtwork" class="current-artwork is-visible" src="assets/images/album-poster.jpg" alt="Imagen de la canción actual">
+            <canvas id="spectrumCanvas" aria-hidden="true"></canvas>
+            <div class="visual-shine"></div>
           </div>
-          <p class="mini-label">Ahora sonando</p>
-          <h2 id="nowTitle">Elige una canción</h2>
-          <p id="nowMood" class="track-mood">Turquesa, pastel y emoción.</p>
-          <p id="nowDescription" class="track-description">Selecciona un tema para ver la imagen, la letra y el audio spectrum sobre la portada.</p>
+          <div class="now-card-copy">
+            <p class="mini-label">Ahora sonando</p>
+            <h2 id="nowTitle">Elige una canción</h2>
+            <p id="nowMood" class="track-mood">Turquesa, pastel y emoción.</p>
+            <p id="nowDescription" class="track-description">Selecciona un tema para ver la imagen, la letra y el audio spectrum sobre la imagen superior.</p>
+          </div>
         </aside>
       </div>
     </header>

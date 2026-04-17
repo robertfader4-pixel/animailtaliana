@@ -7,7 +7,6 @@
   const els = {
     heroPoster: document.getElementById('heroPoster'),
     artwork: document.getElementById('currentArtwork'),
-    nowArtworkThumb: document.getElementById('nowArtworkThumb'),
     nowTitle: document.getElementById('nowTitle'),
     nowMood: document.getElementById('nowMood'),
     nowDescription: document.getElementById('nowDescription'),
@@ -229,10 +228,6 @@
     els.nowDescription.textContent = track.description;
     els.lyricsHeading.textContent = track.title;
     els.miniTrackTitle.textContent = track.title;
-    if (els.nowArtworkThumb) {
-      els.nowArtworkThumb.src = track.image;
-      els.nowArtworkThumb.alt = `Imagen de ${track.title}`;
-    }
   }
 
   function updateMiniInfo(track) {
@@ -256,21 +251,14 @@
   }
 
   function swapArtwork(src) {
-    els.artwork.classList.remove('is-visible');
+    els.artwork.classList.add('is-switching');
     const next = new Image();
     next.onload = () => {
       els.artwork.src = src;
       requestAnimationFrame(() => {
-        els.artwork.classList.add('is-visible');
+        resizeCanvas();
+        els.artwork.classList.remove('is-switching');
       });
-      els.heroPoster.classList.remove('is-visible');
-      if (els.nowArtworkThumb) {
-        els.nowArtworkThumb.src = src;
-      }
-    };
-    next.onerror = () => {
-      els.heroPoster.classList.add('is-visible');
-      showToast('No se pudo cargar la imagen del tema actual.');
     };
     next.src = src;
   }
@@ -383,8 +371,8 @@
       signal = makeIdleSignal(88);
     }
 
-    const mid = height * 0.54;
-    const amplitude = audio && !audio.paused ? height * 0.24 : height * 0.09;
+    const mid = height * 0.56;
+    const amplitude = audio && !audio.paused ? height * 0.28 : height * 0.08;
     const baseY = mid;
     const xStep = width / (signal.length - 1 || 1);
 
@@ -395,7 +383,7 @@
 
     function drawLayer(source, amp, blur, alpha) {
       ctx.save();
-      ctx.lineWidth = 3.4;
+      ctx.lineWidth = 2.5;
       ctx.strokeStyle = `rgba(95,212,217,${alpha})`;
       ctx.shadowBlur = blur;
       ctx.shadowColor = 'rgba(95,212,217,0.9)';
@@ -417,7 +405,7 @@
 
     function drawMainWave(source, amp) {
       ctx.save();
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 3.6;
       ctx.strokeStyle = gradient;
       ctx.shadowBlur = 28;
       ctx.shadowColor = 'rgba(95,212,217,0.95)';
@@ -452,7 +440,7 @@
       ctx.closePath();
 
       const fillGradient = ctx.createLinearGradient(0, baseY - amp, 0, height);
-      fillGradient.addColorStop(0, 'rgba(95,212,217,0.22)');
+      fillGradient.addColorStop(0, 'rgba(95,212,217,0.30)');
       fillGradient.addColorStop(1, 'rgba(95,212,217,0)');
       ctx.fillStyle = fillGradient;
       ctx.fill();
