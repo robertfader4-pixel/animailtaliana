@@ -1,151 +1,118 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Итальянское настроение — красивый музыкальный сайт для слушания, чтения и пения на итальянском языке." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Итальянское настроение</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Experiencia musical offline para escuchar, leer y cantar canciones italianas.">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="site-shell">
-    <div class="ambient ambient-a"></div>
-    <div class="ambient ambient-b"></div>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+  <div class="ambient ambient-c"></div>
 
-    <header class="hero" id="top">
-      <div class="hero-backdrop">
-        <div class="hero-image hero-image-a"></div>
-        <div class="hero-image hero-image-b"></div>
-        <canvas id="spectrumCanvas" class="spectrum-canvas" aria-hidden="true"></canvas>
-        <div class="hero-overlay"></div>
+  <audio id="audio" preload="metadata" crossorigin="anonymous"></audio>
+
+  <div class="app-shell">
+    <header class="hero" id="hero">
+      <div class="hero-media">
+        <img id="heroPoster" class="hero-poster is-visible" src="assets/images/album-poster.jpg" alt="Portada del álbum">
+        <img id="currentArtwork" class="hero-artwork" src="assets/images/album-poster.jpg" alt="Imagen de la canción actual">
+        <div class="hero-vignette"></div>
+        <canvas id="spectrumCanvas" aria-hidden="true"></canvas>
       </div>
 
-      <nav class="topbar panel-soft">
-        <a href="#top" class="brand">Итальянское настроение</a>
-        <div class="topbar-links">
-          <a href="#playlistSection">Плейлист</a>
-          <a href="#lyricsSection">Тексты</a>
-          <a href="#aboutSection">О сайте</a>
-        </div>
-      </nav>
+      <div class="hero-content">
+        <div class="hero-card">
+          <p class="eyebrow">Universo musical · italiano para escuchar y cantar</p>
+          <h1>Итальянское настроение</h1>
+          <p class="subtitle">Una experiencia pastel, íntima y cinematográfica para aprender con música, imágenes y letra.</p>
+          <div class="hero-meta">
+            <span>Luis Fader</span>
+            <span>10 canciones</span>
+            <span>modo offline</span>
+          </div>
 
-      <div class="hero-content panel-soft reveal">
-        <p class="eyebrow">Музыкальный мир для учеников итальянского</p>
-        <h1>Итальянское настроение</h1>
-        <p class="hero-subtitle">Слушай, чувствуй и пой. У каждой песни здесь свой образ, свой свет и своя эмоциональная сцена.</p>
-        <p class="hero-poem" id="heroQuote">Когда меняется песня, меняется и атмосфера: дождь, тайна, весна, признание, память.</p>
-        <div class="hero-meta">
-          <span class="meta-pill">Luis Fader</span>
-          <span class="meta-pill">10 песен</span>
-          <span class="meta-pill">Работает offline</span>
+          <div class="hero-actions">
+            <button id="heroPlayBtn" class="button button-primary" type="button">▶ Reproducir</button>
+            <button id="focusBtn" class="button button-secondary" type="button">✦ Modo focus</button>
+          </div>
         </div>
-        <div class="hero-actions">
-          <button id="heroPlayBtn" class="btn btn-primary" type="button">Слушать</button>
-          <button id="focusToggle" class="btn btn-secondary" type="button">Focus mode</button>
-        </div>
+
+        <aside class="now-card">
+          <p class="mini-label">Ahora sonando</p>
+          <h2 id="nowTitle">Elige una canción</h2>
+          <p id="nowMood" class="track-mood">Turquesa, pastel y emoción.</p>
+          <p id="nowDescription" class="track-description">Selecciona un tema para ver la imagen, la letra y el audio spectrum sobre la portada.</p>
+        </aside>
       </div>
     </header>
 
-    <main class="main-layout">
-      <section class="now-playing reveal">
-        <div class="now-cover panel-soft">
-          <div class="now-cover-frame">
-            <img id="currentCover" src="assets/images/pioggia-segreta.jpg" alt="Обложка текущей песни" />
-            <div class="cover-shine"></div>
-          </div>
-        </div>
-
-        <div class="now-info panel-soft">
-          <p class="section-label">Сейчас звучит</p>
-          <h2 id="trackTitle">Pioggia Segreta</h2>
-          <p id="trackMood" class="track-mood">Тайна, дождь и меланхоличная тишина.</p>
-          <div id="trackTags" class="track-tags"></div>
-          <p id="trackDescription" class="track-description">Каждая композиция меняет главный образ сайта и окрашивает пространство в свой пастельный тон.</p>
-        </div>
-      </section>
-
-      <section class="playlist-grid" id="playlistSection">
-        <section class="panel-soft reveal playlist-panel">
-          <div class="panel-head">
-            <div>
-              <p class="section-label">Альбом</p>
-              <h2>Список песен</h2>
-            </div>
-            <p class="panel-note">Нажми на любую песню: изображение, описание, цвета и текст обновятся сразу.</p>
-          </div>
-          <ol id="playlist" class="playlist" aria-label="Список песен"></ol>
-        </section>
-
-        <section class="panel-soft reveal lyrics-panel" id="lyricsSection">
-          <div class="panel-head">
-            <div>
-              <p class="section-label">Текст</p>
-              <h2>Поэтическое чтение</h2>
-            </div>
-            <button id="lyricsModeBtn" class="btn btn-secondary compact" type="button">Только текст</button>
-          </div>
-          <div class="lyrics-shell">
-            <article id="lyricsContent" class="lyrics-content"></article>
-          </div>
-        </section>
-      </section>
-
-      <section class="about-grid" id="aboutSection">
-        <article class="panel-soft reveal about-card">
-          <p class="section-label">Идея</p>
-          <h2>Красивое пространство для музыки и итальянского языка</h2>
-          <p>
-            Этот сайт задуман как цельное художественное переживание. Можно слушать песни, читать тексты как стихи,
-            всматриваться в иллюстрации и запоминать язык через образ, ритм и эмоцию.
-          </p>
-        </article>
-
-        <article class="panel-soft reveal about-card image-card">
-          <img src="assets/images/ispirazione-autore.jpg" alt="Образ рождения музыки" />
+    <main class="content-grid">
+      <aside class="panel playlist-panel" id="playlistPanel">
+        <div class="panel-head">
           <div>
-            <p class="section-label">Творческий импульс</p>
-            <h2>Когда музыка рождается из образа</h2>
-            <p>
-              Дополнительная визуальная сцена напоминает, что песня часто начинается с внутреннего света, памяти, мечты или одного сильного образа.
-            </p>
+            <p class="section-kicker">Lista de reproducción</p>
+            <h2>Álbum completo</h2>
           </div>
-        </article>
+          <button id="playlistToggleBtn" class="tiny-btn" type="button" aria-expanded="true">Ocultar</button>
+        </div>
+        <ol id="playlist" class="playlist" aria-label="Lista de canciones"></ol>
+      </aside>
+
+      <section class="panel lyrics-panel" id="lyricsPanel">
+        <div class="panel-head">
+          <div>
+            <p class="section-kicker">Letra</p>
+            <h2 id="lyricsHeading">Poema en reproducción</h2>
+          </div>
+          <button id="readingBtn" class="tiny-btn" type="button">Lectura limpia</button>
+        </div>
+        <div class="lyrics-wrap">
+          <article id="lyricsText" class="lyrics-text">
+            <p>Haz clic en una canción para abrir la letra.</p>
+          </article>
+        </div>
       </section>
     </main>
 
-    <aside id="floatingPlayer" class="floating-player panel-soft" aria-label="Музыкальный плеер">
-      <div id="dragHandle" class="drag-handle" title="Перетащить плеер"></div>
-      <div class="player-top">
-        <div class="player-track-meta">
-          <span class="mini-label">Now playing</span>
-          <strong id="miniTrackTitle">Pioggia Segreta</strong>
-          <span id="miniTrackArtist">Luis Fader</span>
+    <div id="floatingPlayer" class="floating-player" role="region" aria-label="Reproductor flotante">
+      <div class="player-handle" id="playerHandle">
+        <span>Reproductor</span>
+        <span class="drag-note">arrastra</span>
+      </div>
+
+      <div class="player-main">
+        <button id="prevBtn" class="icon-btn" type="button" aria-label="Canción anterior">⟨</button>
+        <button id="playBtn" class="play-btn" type="button" aria-label="Reproducir o pausar">▶</button>
+        <button id="nextBtn" class="icon-btn" type="button" aria-label="Canción siguiente">⟩</button>
+
+        <div class="player-texts">
+          <div id="miniTrackTitle" class="mini-track-title">Selecciona una canción</div>
+          <div id="miniTrackInfo" class="mini-track-info">El audio comenzará al pulsar play.</div>
         </div>
-        <button id="minimizeBtn" class="icon-btn" type="button" aria-label="Свернуть плеер">—</button>
       </div>
 
-      <div class="player-controls">
-        <button id="prevBtn" class="icon-btn large" type="button" aria-label="Предыдущая песня">⟨</button>
-        <button id="playBtn" class="play-btn" type="button" aria-label="Воспроизвести или поставить на паузу">▶</button>
-        <button id="nextBtn" class="icon-btn large" type="button" aria-label="Следующая песня">⟩</button>
-      </div>
-
-      <div class="progress-wrap">
+      <div class="player-timeline">
         <span id="currentTime">0:00</span>
-        <input id="progressBar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Позиция воспроизведения" />
+        <input id="progressBar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Progreso">
         <span id="duration">0:00</span>
       </div>
 
-      <div class="volume-wrap">
-        <span>Vol</span>
-        <input id="volumeBar" type="range" min="0" max="1" value="0.82" step="0.01" aria-label="Громкость" />
+      <div class="player-bottom">
+        <label class="volume-wrap">
+          <span>Volumen</span>
+          <input id="volumeBar" type="range" min="0" max="1" value="0.86" step="0.01" aria-label="Volumen">
+        </label>
+        <button id="recenterBtn" class="tiny-btn" type="button">Recentrar</button>
       </div>
-    </aside>
+    </div>
 
-    <button id="expandPlayerBtn" class="expand-player-btn" type="button" aria-label="Открыть плеер">♫</button>
+    <div id="toast" class="toast" aria-live="polite"></div>
   </div>
 
-  <audio id="audio" preload="metadata"></audio>
+  <script src="js/tracks.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

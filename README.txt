@@ -1,13 +1,16 @@
-Итальянское настроение — offline web project
+Итальянское настроение
+========================
 
-Открыть:
-- просто запустите index.html
+Estructura:
+- index.html
+- css/styles.css
+- js/tracks.js
+- js/app.js
+- assets/images
+- assets/audio
 
-Что можно легко менять:
-- тексты и данные песен: js/app.js
-- цвета и стиль: css/styles.css
-- изображения: assets/images/
-- музыка: assets/music/
-
-Примечание:
-- сайт запоминает последнюю песню, время воспроизведения, громкость и положение плеера через localStorage.
+Notas:
+- El sitio funciona offline.
+- En GitHub Pages conserva exactamente la carpeta "assets/audio" para que los MP3 carguen bien.
+- Algunos navegadores bloquean la reproducción automática; en ese caso basta con pulsar play.
+- El audio spectrum turquesa está dibujado con Web Audio API sobre la imagen principal.
