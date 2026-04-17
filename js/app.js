@@ -7,6 +7,7 @@
   const els = {
     heroPoster: document.getElementById('heroPoster'),
     artwork: document.getElementById('currentArtwork'),
+    nowArtworkThumb: document.getElementById('nowArtworkThumb'),
     nowTitle: document.getElementById('nowTitle'),
     nowMood: document.getElementById('nowMood'),
     nowDescription: document.getElementById('nowDescription'),
@@ -228,6 +229,10 @@
     els.nowDescription.textContent = track.description;
     els.lyricsHeading.textContent = track.title;
     els.miniTrackTitle.textContent = track.title;
+    if (els.nowArtworkThumb) {
+      els.nowArtworkThumb.src = track.image;
+      els.nowArtworkThumb.alt = `Imagen de ${track.title}`;
+    }
   }
 
   function updateMiniInfo(track) {
@@ -259,6 +264,13 @@
         els.artwork.classList.add('is-visible');
       });
       els.heroPoster.classList.remove('is-visible');
+      if (els.nowArtworkThumb) {
+        els.nowArtworkThumb.src = src;
+      }
+    };
+    next.onerror = () => {
+      els.heroPoster.classList.add('is-visible');
+      showToast('No se pudo cargar la imagen del tema actual.');
     };
     next.src = src;
   }
@@ -371,8 +383,8 @@
       signal = makeIdleSignal(88);
     }
 
-    const mid = height * 0.58;
-    const amplitude = audio && !audio.paused ? height * 0.17 : height * 0.05;
+    const mid = height * 0.54;
+    const amplitude = audio && !audio.paused ? height * 0.24 : height * 0.09;
     const baseY = mid;
     const xStep = width / (signal.length - 1 || 1);
 
@@ -383,7 +395,7 @@
 
     function drawLayer(source, amp, blur, alpha) {
       ctx.save();
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 3.4;
       ctx.strokeStyle = `rgba(95,212,217,${alpha})`;
       ctx.shadowBlur = blur;
       ctx.shadowColor = 'rgba(95,212,217,0.9)';
