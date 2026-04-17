@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Итальянское настроение — музыкальное путешествие для тех, кто хочет слушать, чувствовать и петь по-итальянски." />
+  <title>Итальянское настроение</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="grain"></div>
+
+    <header class="hero" id="top">
+      <div class="hero-backdrop">
+        <div class="hero-image hero-image-a"></div>
+        <div class="hero-image hero-image-b"></div>
+        <canvas id="spectrumCanvas" class="spectrum-canvas" aria-hidden="true"></canvas>
+        <div class="hero-vignette"></div>
+      </div>
+
+      <nav class="topbar glass">
+        <a href="#top" class="brand">Итальянское настроение</a>
+        <div class="topbar-links">
+          <a href="#playlistSection">Песни</a>
+          <a href="#lyricsSection">Тексты</a>
+          <a href="#aboutSection">О проекте</a>
+        </div>
+      </nav>
+
+      <div class="hero-content glass reveal">
+        <p class="eyebrow">Музыкальный альбом для учеников итальянского</p>
+        <h1 id="projectTitle">Итальянское настроение</h1>
+        <p class="hero-subtitle" id="projectSubtitle">
+          Слушать, чувствовать и петь. Итальянский язык здесь звучит как роман, как письмо, как кино.
+        </p>
+        <p class="hero-poem" id="heroQuote">
+          Когда меняется песня, меняется и свет: дождь, ночь, тайна, весна, любовь, память.
+        </p>
+        <div class="hero-meta">
+          <span class="meta-pill">Luis Fader</span>
+          <span class="meta-pill">10 композиций</span>
+          <span class="meta-pill">Offline Experience</span>
+        </div>
+        <div class="hero-actions">
+          <button id="heroPlayBtn" class="btn btn-primary" type="button">Слушать сейчас</button>
+          <button id="focusToggle" class="btn btn-secondary" type="button">Focus mode</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <section class="now-playing reveal">
+        <div class="now-cover glass">
+          <div class="now-cover-frame">
+            <img id="currentCover" src="assets/images/il-violoncello-nella-fortezza.jpg" alt="Обложка текущей песни" />
+            <div class="cover-glow"></div>
+          </div>
+        </div>
+
+        <div class="now-info glass">
+          <p class="section-label">Сейчас звучит</p>
+          <h2 id="trackTitle">Il Violoncello nella Fortezza</h2>
+          <p id="trackMood" class="track-mood">Эпическая нежность, крепость чувств и музыка как обещание.</p>
+          <div class="track-tags" id="trackTags"></div>
+          <p id="trackDescription" class="track-description">
+            Открой любую композицию и следуй за её образом: каждая песня меняет атмосферу сайта, обложку и цвет дыхания страницы.
+          </p>
+        </div>
+      </section>
+
+      <section class="playlist-grid" id="playlistSection">
+        <div class="panel glass reveal">
+          <div class="panel-head">
+            <div>
+              <p class="section-label">Альбом</p>
+              <h2>Список песен</h2>
+            </div>
+            <p class="panel-note">Нажми на песню — изображение и текст обновятся мгновенно.</p>
+          </div>
+          <ol id="playlist" class="playlist"></ol>
+        </div>
+
+        <div class="panel glass reveal" id="lyricsSection">
+          <div class="panel-head">
+            <div>
+              <p class="section-label">Текст</p>
+              <h2>Поэтическое чтение</h2>
+            </div>
+            <button id="lyricsModeBtn" class="btn btn-secondary compact" type="button">Только текст</button>
+          </div>
+          <div class="lyrics-shell">
+            <div class="lyrics-fade"></div>
+            <article id="lyricsContent" class="lyrics-content"></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-grid" id="aboutSection">
+        <article class="glass reveal about-card">
+          <p class="section-label">Идея</p>
+          <h2>Музыкальный мир для изучения языка</h2>
+          <p>
+            Этот сайт сделан как цельная художественная среда: здесь можно не только слушать песни, но и проживать их образ,
+            видеть настроение каждой композиции и читать текст как стихотворение. Это помогает лучше чувствовать ритм,
+            лексику и эмоциональную окраску итальянского языка.
+          </p>
+        </article>
+
+        <article class="glass reveal about-card image-card">
+          <img src="assets/images/ispirazione-autore.png" alt="Художественный образ автора и рождения музыки" />
+          <div>
+            <p class="section-label">Творческий импульс</p>
+            <h2>Когда песня рождается из образа</h2>
+            <p>
+              Визуальные сцены здесь не служат просто иллюстрациями — они продолжают музыку. Поэтому атмосфера сайта меняется при каждом новом треке.
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <aside id="floatingPlayer" class="floating-player glass" aria-label="Музыкальный плеер">
+      <div id="dragHandle" class="drag-handle" title="Перетащить плеер"></div>
+      <div class="player-top">
+        <div class="player-track-meta">
+          <span class="mini-label">Now playing</span>
+          <strong id="miniTrackTitle">Il Violoncello nella Fortezza</strong>
+          <span id="miniTrackArtist">Luis Fader</span>
+        </div>
+        <button id="minimizeBtn" class="icon-btn" type="button" aria-label="Свернуть плеер">—</button>
+      </div>
+
+      <div class="player-controls">
+        <button id="prevBtn" class="icon-btn large" type="button" aria-label="Предыдущая песня">⟨</button>
+        <button id="playBtn" class="play-btn" type="button" aria-label="Воспроизвести или поставить на паузу">▶</button>
+        <button id="nextBtn" class="icon-btn large" type="button" aria-label="Следующая песня">⟩</button>
+      </div>
+
+      <div class="progress-wrap">
+        <span id="currentTime">0:00</span>
+        <input id="progressBar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Позиция воспроизведения" />
+        <span id="duration">0:00</span>
+      </div>
+
+      <div class="volume-wrap">
+        <span>Vol</span>
+        <input id="volumeBar" type="range" min="0" max="1" value="0.82" step="0.01" aria-label="Громкость" />
+      </div>
+    </aside>
+
+    <button id="expandPlayerBtn" class="expand-player-btn" type="button" aria-label="Открыть плеер">♫</button>
+  </div>
+
+  <audio id="audio" preload="metadata"></audio>
+  <script src="js/app.js"></script>
+</body>
+</html>
