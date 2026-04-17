@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Итальянское настроение — музыкальное путешествие для тех, кто хочет слушать, чувствовать и петь по-итальянски." />
+  <meta name="description" content="Итальянское настроение — красивый музыкальный сайт для слушания, чтения и пения на итальянском языке." />
   <title>Итальянское настроение</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
@@ -11,41 +11,36 @@
   <div class="site-shell">
     <div class="ambient ambient-a"></div>
     <div class="ambient ambient-b"></div>
-    <div class="grain"></div>
 
     <header class="hero" id="top">
       <div class="hero-backdrop">
         <div class="hero-image hero-image-a"></div>
         <div class="hero-image hero-image-b"></div>
         <canvas id="spectrumCanvas" class="spectrum-canvas" aria-hidden="true"></canvas>
-        <div class="hero-vignette"></div>
+        <div class="hero-overlay"></div>
       </div>
 
-      <nav class="topbar glass">
+      <nav class="topbar panel-soft">
         <a href="#top" class="brand">Итальянское настроение</a>
         <div class="topbar-links">
-          <a href="#playlistSection">Песни</a>
+          <a href="#playlistSection">Плейлист</a>
           <a href="#lyricsSection">Тексты</a>
-          <a href="#aboutSection">О проекте</a>
+          <a href="#aboutSection">О сайте</a>
         </div>
       </nav>
 
-      <div class="hero-content glass reveal">
-        <p class="eyebrow">Музыкальный альбом для учеников итальянского</p>
-        <h1 id="projectTitle">Итальянское настроение</h1>
-        <p class="hero-subtitle" id="projectSubtitle">
-          Слушать, чувствовать и петь. Итальянский язык здесь звучит как роман, как письмо, как кино.
-        </p>
-        <p class="hero-poem" id="heroQuote">
-          Когда меняется песня, меняется и свет: дождь, ночь, тайна, весна, любовь, память.
-        </p>
+      <div class="hero-content panel-soft reveal">
+        <p class="eyebrow">Музыкальный мир для учеников итальянского</p>
+        <h1>Итальянское настроение</h1>
+        <p class="hero-subtitle">Слушай, чувствуй и пой. У каждой песни здесь свой образ, свой свет и своя эмоциональная сцена.</p>
+        <p class="hero-poem" id="heroQuote">Когда меняется песня, меняется и атмосфера: дождь, тайна, весна, признание, память.</p>
         <div class="hero-meta">
           <span class="meta-pill">Luis Fader</span>
-          <span class="meta-pill">10 композиций</span>
-          <span class="meta-pill">Offline Experience</span>
+          <span class="meta-pill">10 песен</span>
+          <span class="meta-pill">Работает offline</span>
         </div>
         <div class="hero-actions">
-          <button id="heroPlayBtn" class="btn btn-primary" type="button">Слушать сейчас</button>
+          <button id="heroPlayBtn" class="btn btn-primary" type="button">Слушать</button>
           <button id="focusToggle" class="btn btn-secondary" type="button">Focus mode</button>
         </div>
       </div>
@@ -53,37 +48,35 @@
 
     <main class="main-layout">
       <section class="now-playing reveal">
-        <div class="now-cover glass">
+        <div class="now-cover panel-soft">
           <div class="now-cover-frame">
-            <img id="currentCover" src="assets/images/il-violoncello-nella-fortezza.jpg" alt="Обложка текущей песни" />
-            <div class="cover-glow"></div>
+            <img id="currentCover" src="assets/images/pioggia-segreta.jpg" alt="Обложка текущей песни" />
+            <div class="cover-shine"></div>
           </div>
         </div>
 
-        <div class="now-info glass">
+        <div class="now-info panel-soft">
           <p class="section-label">Сейчас звучит</p>
-          <h2 id="trackTitle">Il Violoncello nella Fortezza</h2>
-          <p id="trackMood" class="track-mood">Эпическая нежность, крепость чувств и музыка как обещание.</p>
-          <div class="track-tags" id="trackTags"></div>
-          <p id="trackDescription" class="track-description">
-            Открой любую композицию и следуй за её образом: каждая песня меняет атмосферу сайта, обложку и цвет дыхания страницы.
-          </p>
+          <h2 id="trackTitle">Pioggia Segreta</h2>
+          <p id="trackMood" class="track-mood">Тайна, дождь и меланхоличная тишина.</p>
+          <div id="trackTags" class="track-tags"></div>
+          <p id="trackDescription" class="track-description">Каждая композиция меняет главный образ сайта и окрашивает пространство в свой пастельный тон.</p>
         </div>
       </section>
 
       <section class="playlist-grid" id="playlistSection">
-        <div class="panel glass reveal">
+        <section class="panel-soft reveal playlist-panel">
           <div class="panel-head">
             <div>
               <p class="section-label">Альбом</p>
               <h2>Список песен</h2>
             </div>
-            <p class="panel-note">Нажми на песню — изображение и текст обновятся мгновенно.</p>
+            <p class="panel-note">Нажми на любую песню: изображение, описание, цвета и текст обновятся сразу.</p>
           </div>
-          <ol id="playlist" class="playlist"></ol>
-        </div>
+          <ol id="playlist" class="playlist" aria-label="Список песен"></ol>
+        </section>
 
-        <div class="panel glass reveal" id="lyricsSection">
+        <section class="panel-soft reveal lyrics-panel" id="lyricsSection">
           <div class="panel-head">
             <div>
               <p class="section-label">Текст</p>
@@ -92,42 +85,40 @@
             <button id="lyricsModeBtn" class="btn btn-secondary compact" type="button">Только текст</button>
           </div>
           <div class="lyrics-shell">
-            <div class="lyrics-fade"></div>
             <article id="lyricsContent" class="lyrics-content"></article>
           </div>
-        </div>
+        </section>
       </section>
 
       <section class="about-grid" id="aboutSection">
-        <article class="glass reveal about-card">
+        <article class="panel-soft reveal about-card">
           <p class="section-label">Идея</p>
-          <h2>Музыкальный мир для изучения языка</h2>
+          <h2>Красивое пространство для музыки и итальянского языка</h2>
           <p>
-            Этот сайт сделан как цельная художественная среда: здесь можно не только слушать песни, но и проживать их образ,
-            видеть настроение каждой композиции и читать текст как стихотворение. Это помогает лучше чувствовать ритм,
-            лексику и эмоциональную окраску итальянского языка.
+            Этот сайт задуман как цельное художественное переживание. Можно слушать песни, читать тексты как стихи,
+            всматриваться в иллюстрации и запоминать язык через образ, ритм и эмоцию.
           </p>
         </article>
 
-        <article class="glass reveal about-card image-card">
-          <img src="assets/images/ispirazione-autore.png" alt="Художественный образ автора и рождения музыки" />
+        <article class="panel-soft reveal about-card image-card">
+          <img src="assets/images/ispirazione-autore.jpg" alt="Образ рождения музыки" />
           <div>
             <p class="section-label">Творческий импульс</p>
-            <h2>Когда песня рождается из образа</h2>
+            <h2>Когда музыка рождается из образа</h2>
             <p>
-              Визуальные сцены здесь не служат просто иллюстрациями — они продолжают музыку. Поэтому атмосфера сайта меняется при каждом новом треке.
+              Дополнительная визуальная сцена напоминает, что песня часто начинается с внутреннего света, памяти, мечты или одного сильного образа.
             </p>
           </div>
         </article>
       </section>
     </main>
 
-    <aside id="floatingPlayer" class="floating-player glass" aria-label="Музыкальный плеер">
+    <aside id="floatingPlayer" class="floating-player panel-soft" aria-label="Музыкальный плеер">
       <div id="dragHandle" class="drag-handle" title="Перетащить плеер"></div>
       <div class="player-top">
         <div class="player-track-meta">
           <span class="mini-label">Now playing</span>
-          <strong id="miniTrackTitle">Il Violoncello nella Fortezza</strong>
+          <strong id="miniTrackTitle">Pioggia Segreta</strong>
           <span id="miniTrackArtist">Luis Fader</span>
         </div>
         <button id="minimizeBtn" class="icon-btn" type="button" aria-label="Свернуть плеер">—</button>
